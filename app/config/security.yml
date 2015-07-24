@@ -1,0 +1,32 @@
+security:
+    encoders:
+        Trismegiste\SocialBundle\Security\User: sha1
+
+    role_hierarchy:
+        ROLE_USER:          ~
+        ROLE_ADMIN:         ~
+
+    providers:
+        proprietary:
+            id: security.user.provider
+
+    firewalls:
+        dev:
+            pattern:  ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        secured_area:
+            pattern:    ^/
+            provider: proprietary
+            stateless: false
+            anonymous: ~
+            oauth:
+                login_path:   trismegiste_oauth_connect
+                check_path:   trismegiste_oauth_check
+            logout:
+                path:   trismegiste_oauth_logout
+                target: /
+
+    access_control:
+        - { path: ^/admin/, roles: ROLE_ADMIN }
+        - { path: ^/customer/, roles: ROLE_USER }

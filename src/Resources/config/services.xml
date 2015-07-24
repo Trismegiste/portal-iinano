@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="security.user.provider" class="Trismegiste\PortalBundle\Security\UserProvider">
+            <argument type="service" id="dokudoki.repository"/>
+        </service>
+
+        <!-- misc -->
+        <service id="portal.config" class="Trismegiste\PortalBundle\DependencyInjection\OauthConfig">
+            <argument>%oauth_config%</argument>
+        </service>
+
+    </services>
+</container>

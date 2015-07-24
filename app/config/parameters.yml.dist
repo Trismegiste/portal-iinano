@@ -1,0 +1,16 @@
+parameters:
+    locale: en
+    secret: toto
+    mongodb_server: 'localhost:27017'
+    paypal_config:
+        username: aaa
+        password: bbb
+        signature: ccc
+        sandbox: 0
+    oauth_config:
+        facebook:
+            client: aaa
+            secret: bbb
+        twitter:
+            client: aaa
+            secret: bbb
