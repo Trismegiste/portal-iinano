@@ -19,4 +19,9 @@ class FrontController extends Controller
         return $this->render('TrismegistePortalBundle:Front:index.html.twig');
     }
 
+    public function connectAction()
+    {
+        return $this->render('TrismegistePortalBundle:Front:connect.html.twig');
+    }
+
 }

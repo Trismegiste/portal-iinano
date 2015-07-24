@@ -1,6 +1,4 @@
 security:
-    encoders:
-        Trismegiste\SocialBundle\Security\User: sha1
 
     role_hierarchy:
         ROLE_USER:          ~

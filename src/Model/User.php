@@ -4,7 +4,7 @@
  * portal-iinano
  */
 
-namespace Trismegiste\PortalBundle\Security;
+namespace Trismegiste\PortalBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
 

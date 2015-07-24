@@ -6,7 +6,7 @@
 
     <!-- step 1 : choose provider -->
     <route id="trismegiste_oauth_connect" pattern="/connect">
-        <default key="_controller">TrismegisteSocialBundle:Guest:connect</default>
+        <default key="_controller">TrismegistePortalBundle:Front:connect</default>
         <requirement key="_method">GET</requirement>
     </route>
 
