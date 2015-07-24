@@ -1,5 +1,154 @@
 {% extends 'TrismegistePortalBundle::purecss.html.twig' %}
 
-{% block full_body %}
-    wrhd wrd
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{ asset('bundles/trismegisteportal/css/font-awesome.min.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/trismegisteportal/css/marketing.css') }}"/>
 {% endblock %}
+
+{% block full_body %}
+    <div class="header">
+        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
+            <ul class="pure-menu-list">
+                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">iinano software</a></li>
+                <li class="pure-menu-item"><a href="http://iinano.net" class="pure-menu-link">Try iinano</a></li>
+                <li class="pure-menu-item"><a href="http://aws.amazon.com" class="pure-menu-link">Install iinano</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="splash-container">
+        <div class="splash">
+            <h1 class="splash-head">iinano<br/>social network</h1>
+            <p class="splash-subhead">
+                So you want to grow an online community and make money ?
+                Congratulations, you just find the right solution !
+            </p>
+            <p>
+                <a href="http://iinano.net" class="pure-button pure-button-primary">Try the demo</a>
+            </p>
+        </div>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="content">
+            <h2 class="content-head is-center">social network + privacy + profit = iinano</h2>
+            <div class="pure-g">
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        &#x262F;
+                        Zen Features
+                    </h3>
+                    <p>
+                        You post a new content (message, picture, video) on <a href="http://iinano.net" title="Try the demo">iinano</a>,
+                        your followers read it.
+                        Clear &amp; simple.
+                        You can comment, retweet or send private message.
+                        And of course : you can "Like" any contents and any users.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="icon-usd"></i>
+                        Marketing Tool
+                    </h3>
+                    <p>
+                        <a href="http://aws.amazon.com" title="Install on Amazon">iinano</a> is a full marketing solution
+                        with two kinds of <strong>coupon</strong> to get new customers :
+                        an url to post over the web and <strong>QR-code to print</strong> in one click
+                        for IRL promotion. Entrance fee & coupons are fully configurable.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="icon-rocket"></i>
+                        Get Started Quickly
+                    </h3>
+                    <p>
+                        Thanks to the Amazon's Cloud, you're ready to go in few minutes. All you need is
+                        a Facebook or a Twitter account to <a href="http://aws.amazon.com" title="Install on Amazon">install iinano</a>.
+                        Then you configure your Paypal account and get your money : no middle-man.
+                    </p>
+                </div>
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="icon-mobile-phone"></i>
+                        Mobile First
+                    </h3>
+                    <p>
+                        Social networks are alive on smartphones and tablets we carry everywhere.
+                        For this, <a href="http://iinano.net" title="Try the demo">iinano</a> is fast
+                        and lightweight, specially designed for small screens
+                        and through slow connections.
+                    </p>
+                </div>                    <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="icon-user"></i>
+                        Get New Subscribers
+                    </h3>
+                    <p>
+                        <a href="http://iinano.net" title="Try the demo">iinano</a> features a "log-in" with facebook and twitter
+                        so new users will register in 2 clicks and 2 fields before to "get in".
+                        No endless form to fill.
+                        Bonus, it is easier to promote your network
+                        accross the web.
+                    </p>
+                </div>
+
+                <div class="l-box pure-u-1 pure-u-md-1-2 pure-u-lg-1-3">
+                    <h3 class="content-subhead">
+                        <i class="icon-linux"></i>
+                        Opensource
+                    </h3>
+                    <p>
+                        Afraid about vendor lock-in ? iinano is full opensource, released under MIT license. Built on
+                        long-term validated opensource software solutions : Symfony2, MongoDb, jQuery and Yahoo PureCSS.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="ribbon l-box-lrg pure-g">
+            <div class="l-box-lrg is-center pure-u-1 pure-u-md-1-2 pure-u-lg-2-5">
+                <a href="http://aws.amazon.com" title="Install on Amazon" class="aws-install"><i class="icon-download-alt"></i></a>
+            </div>
+            <div class="pure-u-1 pure-u-md-1-2 pure-u-lg-3-5">
+
+                <h2 class="content-head content-head-ribbon">Available on AWS</h2>
+                <p>
+                    Install <a href="http://aws.amazon.com" title="Install on Amazon">iinano</a> on Amazon Service in one
+                    click. Since iinano is lightweight and running at lightspeed, small communities
+                    don't need a big cluster :
+                    iinano runs even on the smallest instance from Amazon. Lower your cost !
+                    Low cost means a low subscribing fee for end-users therefore many end-users and big profit !
+                </p>
+            </div>
+        </div>
+
+        <div class="content">
+            <h3 class="content-head is-center"><i class="icon-quote-left"></i>
+                At last, a responsive full-stack solution
+                for building your own social network <i class="icon-quote-right"></i></h2>
+
+                <div class="pure-g">
+                    <div class="l-box-lrg pure-u-1 pure-u-md-3-5">
+                        <h4>Contact Us</h4>
+                        <div class="pure-g">
+                            <div class="pure-u-1-2 is-center">
+                                On facebook<br/>
+                                <a href="https://www.facebook.com/pages/Team-iinano/653299854769506" class="socnet-link"><i class="icon-facebook-sign"></i></a>
+                            </div>
+                            <div class="pure-u-1-2 is-center">
+                                On twitter<br/>
+                                <a href="https://twitter.com/iinano_devteam" class="socnet-link"><i class="icon-twitter-sign"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+        <div class="footer l-box is-center">
+            &copy; by iinano software - 2015
+        </div>
+
+    </div>{% endblock %}
