@@ -9,14 +9,14 @@ namespace Trismegiste\PortalBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 /**
- * FrontController is a ...
+ * FrontController is a controller for the front (demo, landing page...)
  */
 class FrontController extends Controller
 {
 
     public function indexAction()
     {
-        return new \Symfony\Component\HttpFoundation\Response('ok');
+        return $this->render('TrismegistePortalBundle:Front:index.html.twig');
     }
 
 }
