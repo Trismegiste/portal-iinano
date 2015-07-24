@@ -1,74 +1,37 @@
-{% extends 'TrismegistePortalBundle::purecss.html.twig' %}
+{% extends 'TrismegistePortalBundle::zenlayout.html.twig' %}
+
+{% set providerColor={facebook:'#3B5998', twitter:'#4099FF', dummy:'hotpink'} %}
 
 {%block stylesheets %}
     {{ parent() }}
     <style>
-        .content .pure-u-md-1-3 {
-            padding-bottom: 1em;
-        }
-        .auth-error {
-            color: #ac2925;
-            background-color: pink;
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            list-style-type: none;
-        }
-        .alert-install {
-            background: pink;
-            color: black;
-            text-align: center;
-            padding: 1em;
-            margin-bottom: 1em;
+        .content a {
+            color: #777;
         }
         .social-oauth {
             font-size: 10em;
             color: grey;
         }
         {# the things we do for better user experience: dynamic CSS #}
-        {% set providerColor={facebook:'#3B5998', twitter:'#4099FF', dummy:'hotpink'} %}
         {% for key, color in providerColor %}
-            a.{{ key }}{% if last_provider is not defined or key != last_provider %}:hover{% endif %} {
+            a.{{ key }}:hover {
                 color: {{ color }};
             }
         {% endfor %}
-        .icon-dummy-squared:before { content: '\e809'; } /* '' */
+        .icon-dummy-sign:before { content: '\f188'; } /* '' */
     </style>
 {% endblock %}
 
-{% block full_body %}
-    <div class="content">
-        <div class="pure-g">
-            {% if install_url is defined %}
-                <div class="pure-u-1 alert-install">
-                    <h3>If you don't see any social networks below then you need
-                        <a href="{{ install_url }}">to configure at least one here</a>
-                    </h3>
-                </div>
-            {% endif %}
-            <div class="pure-u-1 pure-u-md-1-3">
-                <h1>{{ social_config.appTitle }}</h1>
-                <h3>{{ social_config.subTitle }}</h3>
+{% block centered_column %}
+    <div class="pure-g">
+        {% for provider, color in providerColor %}
+            <div class="pure-u-1 pure-u-md-1-2 is-center">
+                <a href="{{ path('trismegiste_oauth_connect_with', {provider:provider}) }}"
+                   title="Login with {{ provider|capitalize }}"
+                   class="social-oauth {{ provider }}">
+                    <i class="icon-{{ provider }}-sign"></i>
+                </a>
             </div>
-            <div class="pure-u-1 pure-u-md-2-3">
-                <h3 class="text-center">Please authenticate yourself with</h3>
-                {% if error %}
-                    <ul class="auth-error">
-                        <li>{{ error.message }}</li>
-                    </ul>
-                {% endif %}
-                <div class="pure-g">
-                    {% for provider in listing %}
-                        <div class="pure-u-1 pure-u-md-1-2 text-center">
-                            <a href="{{ path('trismegiste_oauth_connect_with', {provider:provider}) }}"
-                               title="Login with {{ provider|capitalize }}"
-                               class="social-oauth {{ provider }}">
-                                <i class="icon-{{ provider }}-squared"></i>
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 {% endblock %}
