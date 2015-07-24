@@ -7,12 +7,13 @@
 namespace Trismegiste\PortalBundle\Security;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Trismegiste\OAuthBundle\Security\OauthUserProviderInterface;
 
 /**
  * UserProvider is a ...
  */
-class UserProvider implements OauthUserProviderInterface
+class UserProvider implements OauthUserProviderInterface, UserProviderInterface
 {
 
     public function __construct()

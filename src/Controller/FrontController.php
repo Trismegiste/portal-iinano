@@ -16,7 +16,7 @@ class FrontController extends Controller
 
     public function indexAction()
     {
-        return new Response('ok');
+        return new \Symfony\Component\HttpFoundation\Response('ok');
     }
 
 }
