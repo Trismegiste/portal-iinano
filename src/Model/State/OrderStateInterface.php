@@ -25,4 +25,6 @@ interface OrderStateInterface
     public function doPayment();
 
     public function failedStack();
+
+    public function failedPayment();
 }

@@ -43,4 +43,9 @@ class Rollback extends AbstractState
         throw new \LogicException();
     }
 
+    public function failedPayment()
+    {
+        throw new \LogicException();
+    }
+
 }

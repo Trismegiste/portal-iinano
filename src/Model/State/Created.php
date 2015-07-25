@@ -39,7 +39,13 @@ class Created extends AbstractState
 
     public function failedStack()
     {
-        throw new \LogicException('Stack creation is sucessful');
+        throw new \LogicException('Stack creation was sucessful');
+    }
+
+    public function failedPayment()
+    {
+        // restart payment
+        $this->context->setState('authenticated');
     }
 
 }

@@ -44,4 +44,9 @@ class Cart extends AbstractState
         throw new RuntimeException('Unauthenticated');
     }
 
+    public function failedPayment()
+    {
+        throw new RuntimeException('Unauthenticated');
+    }
+
 }

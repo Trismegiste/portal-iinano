@@ -23,6 +23,7 @@ class Order implements Persistable
     protected $stateListing;
     protected $user;
     protected $paypalDetail;
+    protected $stackDetail;
 
     /** @var Plan */
     protected $product;
@@ -68,6 +69,11 @@ class Order implements Persistable
         }
     }
 
+    public function getUser()
+    {
+        return $this->user;
+    }
+
     /**
      * Action
      *
@@ -84,9 +90,15 @@ class Order implements Persistable
         $this->currentState->createStack();
     }
 
-    public function commitStack()
+    public function commitStack(array $response)
     {
         $this->currentState->commitStack();
+        $this->stackDetail = $response;
+    }
+
+    public function getStackDetail()
+    {
+        return $this->stackDetail;
     }
 
     public function rollbackStack()
@@ -101,7 +113,7 @@ class Order implements Persistable
 
     public function paymentHasFailed()
     {
-        $this->currentState->commitStack();
+        $this->currentState->failedPayment();
     }
 
 }

@@ -19,7 +19,11 @@ class CanCapture extends AbstractState
 
     public function createStack()
     {
-        $this->context->setState('stackCreation');
+        if (is_null($this->context->getStackDetail())) {
+            $this->context->setState('stackCreation');
+        } else {
+            $this->context->setState('created');
+        }
     }
 
     public function setAuthenticated()
@@ -38,6 +42,11 @@ class CanCapture extends AbstractState
     }
 
     public function failedStack()
+    {
+        throw new \LogicException();
+    }
+
+    public function failedPayment()
     {
         throw new \LogicException();
     }

@@ -42,4 +42,9 @@ class StackCreation extends AbstractState
         $this->context->setState('rollback');
     }
 
+    public function failedPayment()
+    {
+        throw new \LogicException();
+    }
+
 }

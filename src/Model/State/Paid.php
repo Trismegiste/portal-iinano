@@ -42,4 +42,9 @@ class Paid extends AbstractState
         throw new \LogicException();
     }
 
+    public function failedPayment()
+    {
+        throw new \LogicException('Payment was successful');
+    }
+
 }
