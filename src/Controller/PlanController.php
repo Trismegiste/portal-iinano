@@ -25,9 +25,8 @@ class PlanController extends Controller
     public function checkoutAction($sku)
     {
         try {
-            $plan = $this->get('portal.plan.repository')->findBySku($sku);
-            $this->get('session')->set('cart', $plan);
-            $this->get('session')->set('action', 'checkout');  // FINITE STATE MACHINE
+            $cart = $this->get('portal.plan.repository')->createCart($sku);
+            $this->get('session')->set('order', $cart);
         } catch (\OutOfRangeException $e) {
             throw new NotFoundHttpException($e->getMessage(), $e);
         }

@@ -28,7 +28,7 @@ class Plan
                 'dbLimit' => 2,
                 'storageLimit' => 2,
                 'bandwidthLimit' => 20,
-                'price' => 19,
+                'price' => 29,
                 'recommendedSize' => 100
                     ]),
             new Model\Plan([
@@ -37,7 +37,7 @@ class Plan
                 'dbLimit' => 10,
                 'storageLimit' => 20,
                 'bandwidthLimit' => 200,
-                'price' => 49,
+                'price' => 99,
                 'recommendedSize' => 1000
                     ]),
             new Model\Plan([
@@ -46,7 +46,7 @@ class Plan
                 'dbLimit' => 50,
                 'storageLimit' => 100,
                 'bandwidthLimit' => 1000,
-                'price' => 199,
+                'price' => 299,
                 'recommendedSize' => 10000
                     ])
         ];
@@ -71,6 +71,15 @@ class Plan
         }
 
         throw new \OutOfRangeException("$sku not found");
+    }
+
+    public function createCart($sku)
+    {
+        $plan = $this->findBySku($sku);
+
+        $order = new Model\Order($plan);
+
+        return $order;
     }
 
 }
