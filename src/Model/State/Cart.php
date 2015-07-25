@@ -29,4 +29,19 @@ class Cart extends AbstractState
         throw new RuntimeException('Unauthenticated');
     }
 
+    public function commitStack()
+    {
+        throw new RuntimeException('Unauthenticated');
+    }
+
+    public function doPayment()
+    {
+        throw new RuntimeException('Unauthenticated');
+    }
+
+    public function failedStack()
+    {
+        throw new RuntimeException('Unauthenticated');
+    }
+
 }

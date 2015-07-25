@@ -27,4 +27,19 @@ class StackCreation extends AbstractState
         throw new \LogicException('Creation in progress');
     }
 
+    public function commitStack()
+    {
+        $this->context->setState('created');
+    }
+
+    public function doPayment()
+    {
+        throw new \LogicException('Stack creation is still in progress');
+    }
+
+    public function failedStack()
+    {
+        $this->context->setState('rollback');
+    }
+
 }

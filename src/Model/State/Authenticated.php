@@ -29,4 +29,19 @@ class Authenticated extends AbstractState
         throw new RuntimeException('No deployment before payment detail ok');
     }
 
+    public function commitStack()
+    {
+        throw new \LogicException('No deployment before payment detail ok');
+    }
+
+    public function doPayment()
+    {
+        throw new \LogicException('No payment before payment detail ok');
+    }
+
+    public function failedStack()
+    {
+        throw new \LogicException();
+    }
+
 }

@@ -34,7 +34,10 @@ class Order implements Persistable
             'cart' => new State\Cart($this),
             'authenticated' => new State\Authenticated($this),
             'canCapture' => new State\CanCapture($this),
-            'stackCreation' => new State\CanCapture($this)
+            'stackCreation' => new State\CanCapture($this),
+            'created' => new State\Created($this),
+            'paid' => new State\Paid($this),
+            'rollback' => new State\Rollback($this)
         ];
 
         $this->currentState = reset($this->stateListing);
@@ -79,6 +82,26 @@ class Order implements Persistable
     public function deploy()
     {
         $this->currentState->createStack();
+    }
+
+    public function commitStack()
+    {
+        $this->currentState->commitStack();
+    }
+
+    public function rollbackStack()
+    {
+        $this->currentState->failedStack();
+    }
+
+    public function doPayment()
+    {
+        $this->currentState->doPayment();
+    }
+
+    public function paymentHasFailed()
+    {
+        $this->currentState->commitStack();
     }
 
 }
