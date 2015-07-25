@@ -1,16 +1,6 @@
-{% extends 'TrismegistePortalBundle::purecss.html.twig' %}
+{% extends 'TrismegistePortalBundle:Front:layout_w_menu.html.twig' %}
 
-{% block full_body %}
-    <div class="header">
-        <div class="home-menu pure-menu pure-menu-horizontal pure-menu-fixed">
-            <ul class="pure-menu-list">
-                <li class="pure-menu-item pure-menu-selected"><a href="#" class="pure-menu-link">iinano software</a></li>
-                <li class="pure-menu-item"><a href="{{demo_url}}" class="pure-menu-link">Try iinano</a></li>
-                <li class="pure-menu-item"><a href="{{ path('front_plan_list') }}" class="pure-menu-link">Install iinano</a></li>
-            </ul>
-        </div>
-    </div>
-
+{% block content_body %}
     <div class="splash-container">
         <div class="splash">
             <h1 class="splash-head">iinano<br/>social network</h1>
@@ -145,4 +135,5 @@
             &copy; by iinano software - 2015
         </div>
 
-    </div>{% endblock %}
+    </div>
+{% endblock %}
