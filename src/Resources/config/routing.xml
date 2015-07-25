@@ -19,5 +19,9 @@
         <default key="_controller">TrismegistePortalBundle:Plan:list</default>
         <requirement key="_method">GET</requirement>
     </route>
-
+    <route id="front_plan_checkout" pattern="/plan/checkout/{sku}">
+        <default key="_controller">TrismegistePortalBundle:Plan:checkout</default>
+        <requirement key="sku">[a-z]+</requirement>
+        <requirement key="_method">GET</requirement>
+    </route>
 </routes>

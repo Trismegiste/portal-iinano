@@ -29,7 +29,9 @@
                             <li>Free marketing tools and coupon</li>
                             <li>Get your money with Paypal</li>
                         </ul>
-                        <button class="button-choose pure-button">Choose</button>
+                        <form action="{{ path('front_plan_checkout', {sku:item.code}) }}" method="GET">
+                            <button class="button-choose pure-button">Choose</button>
+                        </form>
                     </div>
                 </div>
             {% endfor %}

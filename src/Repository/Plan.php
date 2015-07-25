@@ -62,4 +62,15 @@ class Plan
         return $listing[0]->getPrice();
     }
 
+    public function findBySku($sku)
+    {
+        foreach ($this->all() as $plan) {
+            if ($plan->getCode() === $sku) {
+                return $plan;
+            }
+        }
+
+        throw new \OutOfRangeException("$sku not found");
+    }
+
 }
