@@ -39,6 +39,10 @@
     background: #2c4985;
 }
 
+.pricing-table-xl .pricing-table-header {
+    background: goldenrod;
+}
+
 /*
  * -- PRICING TABLE HEADER --
  * By default, a header is black/white, and has some styles for its <h2> name.

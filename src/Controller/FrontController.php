@@ -16,7 +16,9 @@ class FrontController extends Controller
 
     public function indexAction()
     {
-        return $this->render('TrismegistePortalBundle:Front:index.html.twig');
+        $param['floor_price'] = $this->get('portal.plan.repository')->getFloorPrice();
+
+        return $this->render('TrismegistePortalBundle:Front:index.html.twig', $param);
     }
 
     public function connectAction()
