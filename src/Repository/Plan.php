@@ -14,6 +14,11 @@ use Trismegiste\PortalBundle\Model;
 class Plan
 {
 
+    /**
+     * Get all plans
+     *
+     * @return Model\Plan[]
+     */
     public function all()
     {
         return [
@@ -29,20 +34,20 @@ class Plan
             new Model\Plan([
                 'name' => 'value',
                 'code' => 'md',
-                'db_limit' => 10,
-                'storage_limit' => 20,
-                'bandwidth_limit' => 200,
+                'dbLimit' => 10,
+                'storageLimit' => 20,
+                'bandwidthLimit' => 200,
                 'price' => 49,
-                'recommended_size' => 1000
+                'recommendedSize' => 1000
                     ]),
             new Model\Plan([
                 'name' => 'large',
                 'code' => 'lg',
-                'db_limit' => 50,
-                'storage_limit' => 100,
-                'bandwidth_limit' => 1000,
+                'dbLimit' => 50,
+                'storageLimit' => 100,
+                'bandwidthLimit' => 1000,
                 'price' => 199,
-                'recommended_size' => 10000
+                'recommendedSize' => 10000
                     ])
         ];
     }
@@ -50,11 +55,11 @@ class Plan
     public function getFloorPrice()
     {
         $listing = $this->all();
-        usort($listing, function($a, $b) {
-            return $a['price'] < $b['price'] ? -1 : 1;
+        usort($listing, function(Model\Plan $a, Model\Plan $b) {
+            return $a->getPrice() < $b->getPrice() ? -1 : 1;
         });
 
-        return $listing[0]['price'];
+        return $listing[0]->getPrice();
     }
 
 }
