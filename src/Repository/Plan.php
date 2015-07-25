@@ -17,6 +17,7 @@ class Plan
         return [
             [
                 'name' => 'micro',
+                'code' => 'sm',
                 'db_limit' => 2,
                 'storage_limit' => 2,
                 'bandwidth_limit' => 20,
@@ -25,6 +26,7 @@ class Plan
             ],
             [
                 'name' => 'value',
+                'code' => 'md',
                 'db_limit' => 10,
                 'storage_limit' => 20,
                 'bandwidth_limit' => 300,
@@ -33,6 +35,7 @@ class Plan
             ],
             [
                 'name' => 'large',
+                'code' => 'lg',
                 'db_limit' => 50,
                 'storage_limit' => 100,
                 'bandwidth_limit' => 1000,

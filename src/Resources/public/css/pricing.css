@@ -31,11 +31,11 @@
  * -- PRICING TABLE HEADER COLORS --
  * Choose a different color based on the type of pricing table.
  */
-.pricing-table-free .pricing-table-header {
+.pricing-table-sm .pricing-table-header {
     background: #519251;
 }
 
-.pricing-table-biz .pricing-table-header {
+.pricing-table-md .pricing-table-header {
     background: #2c4985;
 }
 
