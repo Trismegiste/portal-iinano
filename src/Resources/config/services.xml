@@ -15,5 +15,13 @@
             <argument>%oauth_config%</argument>
         </service>
 
+        <service id="failure_login_autoregister" class="Trismegiste\PortalBundle\Security\AutoRegisterFailureHandler">
+            <argument type="service" id="security.http_utils"/>
+            <argument type="service" id="logger"/>
+            <argument type="service" id="dokudoki.repository"/>
+            <argument type="service" id="security.context"/>
+            <tag name="monolog.logger" channel="security"/>
+        </service>
+
     </services>
 </container>

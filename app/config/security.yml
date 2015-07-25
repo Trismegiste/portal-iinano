@@ -18,7 +18,8 @@ security:
             provider: proprietary
             stateless: false
             anonymous: ~
-            oauth: ~
+            oauth:
+                failure_handler: failure_login_autoregister
             logout:
                 path:   trismegiste_oauth_logout
                 target: /

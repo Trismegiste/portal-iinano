@@ -47,7 +47,8 @@ dokudoki:
     server: %mongodb_server%
     database: portal
     collection: dokudoki
-    alias: []
+    alias:
+        user: Trismegiste\PortalBundle\Model\User
 
 oauth:
     config: portal.config

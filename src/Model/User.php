@@ -7,12 +7,19 @@
 namespace Trismegiste\PortalBundle\Model;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Trismegiste\Yuurei\Persistence\Persistable;
 
 /**
  * User is a ...
  */
-class User implements UserInterface
+class User implements UserInterface, Persistable
 {
+
+    use \Trismegiste\Yuurei\Persistence\PersistableImpl;
+
+    public $nickname;
+    public $provider;
+    public $uid;
 
     public function eraseCredentials()
     {
@@ -26,7 +33,7 @@ class User implements UserInterface
 
     public function getRoles()
     {
-
+        return ['ROLE_USER'];
     }
 
     public function getSalt()
@@ -36,7 +43,7 @@ class User implements UserInterface
 
     public function getUsername()
     {
-
+        return $this->nickname;
     }
 
 }
