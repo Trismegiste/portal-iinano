@@ -28,7 +28,8 @@ twig:
     form:
         resources:
             - '::purecss_form.html.twig'
-
+    globals:
+        demo_url: http://demo.iinano.net
 # Assetic Configuration
 assetic:
     debug:          false

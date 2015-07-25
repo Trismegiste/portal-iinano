@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Trismegiste\Yuurei\Persistence\Persistable;
 
 /**
- * User is a ...
+ * User is a Customer
  */
 class User implements UserInterface, Persistable
 {
