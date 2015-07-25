@@ -14,7 +14,7 @@ class Rollback extends AbstractState
 
     public function canCapture()
     {
-        throw new \LogicException();
+        throw new \LogicException('Already paid');
     }
 
     public function commitStack()
@@ -30,7 +30,7 @@ class Rollback extends AbstractState
 
     public function doPayment()
     {
-        throw new \LogicException();
+        throw new \LogicException('Already paid');
     }
 
     public function failedStack()

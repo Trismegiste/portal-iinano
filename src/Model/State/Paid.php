@@ -14,7 +14,7 @@ class Paid extends AbstractState
 
     public function canCapture()
     {
-        throw new \LogicException();
+        throw new \LogicException('Already paid');
     }
 
     public function commitStack()
@@ -24,12 +24,12 @@ class Paid extends AbstractState
 
     public function createStack()
     {
-        throw new \LogicException();
+        $this->context->setState('stackCreation');
     }
 
     public function doPayment()
     {
-        throw new \LogicException();
+        throw new \LogicException('Already paid');
     }
 
     public function failedStack()

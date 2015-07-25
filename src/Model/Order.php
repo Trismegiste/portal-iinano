@@ -85,11 +85,19 @@ class Order implements Persistable
         $this->paypalDetail = $response;
     }
 
+    /**
+     * Action
+     */
     public function deploy()
     {
         $this->currentState->createStack();
     }
 
+    /**
+     * Action
+     *
+     * @param array $response
+     */
     public function commitStack(array $response)
     {
         $this->currentState->commitStack();
@@ -101,16 +109,25 @@ class Order implements Persistable
         return $this->stackDetail;
     }
 
+    /**
+     * Action
+     */
     public function rollbackStack()
     {
         $this->currentState->failedStack();
     }
 
+    /**
+     * Action
+     */
     public function doPayment()
     {
         $this->currentState->doPayment();
     }
 
+    /**
+     * Action
+     */
     public function paymentHasFailed()
     {
         $this->currentState->failedPayment();

@@ -34,7 +34,7 @@ class StackCreation extends AbstractState
 
     public function doPayment()
     {
-        throw new \LogicException('Stack creation is still in progress');
+        throw new \LogicException('Stack creation already paid');
     }
 
     public function failedStack()
