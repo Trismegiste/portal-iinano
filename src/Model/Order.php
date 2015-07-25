@@ -44,6 +44,11 @@ class Order implements Persistable
         $this->currentState = reset($this->stateListing);
     }
 
+    public function getState()
+    {
+        return $this->currentState;
+    }
+
     /**
      * Do not call - Only State can call this method
      *
