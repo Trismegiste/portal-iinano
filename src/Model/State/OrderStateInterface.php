@@ -15,16 +15,4 @@ interface OrderStateInterface
 {
 
     public function setAuthenticated();
-
-    public function canCapture();
-
-    public function createStack();
-
-    public function commitStack();
-
-    public function doPayment();
-
-    public function failedStack();
-
-    public function failedPayment();
 }

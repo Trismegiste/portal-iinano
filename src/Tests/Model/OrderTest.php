@@ -15,27 +15,95 @@ use Trismegiste\PortalBundle\Model\Plan;
 class OrderTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $sut;
-
-    protected function setUp()
+    public function assertState($state, Order $order)
     {
-        $this->sut = new Order(new Plan([]));
-    }
-
-    protected function assertState($state)
-    {
-        $this->assertInstanceOf('Trismegiste\PortalBundle\Model\State\\' . $state, $this->sut->getState());
+        $this->assertInstanceOf('Trismegiste\PortalBundle\Model\State\\' . $state, $order->getState());
     }
 
     public function testInitialState()
     {
-        $this->assertState('Cart');
+        $order = new Order(new Plan([]));
+        $this->assertState('Cart', $order);
+
+        return $order;
     }
 
-    public function testAuthenticateTransition()
+    /**
+     * @depends testInitialState
+     */
+    public function testAuthenticateTransition(Order $order)
     {
-        $this->sut->authenticate($this->getMock('Symfony\Component\Security\Core\User\UserInterface'));
-        $this->assertState('Authenticated');
+        $order->authenticate($this->getMock('Symfony\Component\Security\Core\User\UserInterface'));
+        $this->assertState('Authenticated', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testAuthenticateTransition
+     */
+    public function testReadyToPayTransition(Order $order)
+    {
+        $order->readyToPay([]);
+        $this->assertState('CanCapture', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testReadyToPayTransition
+     */
+    public function testDoPaymentTransition(Order $order)
+    {
+        $order->doPayment();
+        $this->assertState('Paid', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testDoPaymentTransition
+     */
+    public function testDeployTransition(Order $order)
+    {
+        $order->deploy();
+        $this->assertState('StackCreation', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testDeployTransition
+     */
+    public function testCommitStackTransition(Order $order)
+    {
+        $order = clone $order;
+        $order->commitStack([]);
+        $this->assertState('Created', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testDeployTransition
+     */
+    public function testRollback(Order $order)
+    {
+        $order->rollbackStack();
+        $this->assertState('Rollback', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testRollback
+     */
+    public function testRelauchDeploy(Order $order)
+    {
+        $order->deploy();
+        $this->assertState('Created', $order);
+
+        return $order;
     }
 
 }

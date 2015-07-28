@@ -67,13 +67,14 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
 
             // create new user and persist
             $token = $exception->getToken();
+            $newToken = new Token($token->getFirewallName(), $token->getProviderKey(), $token->getUserUniqueIdentifier(), ['ROLE_USER']);
             $user = new User();
             $user->uid = $token->getUserUniqueIdentifier();
             $user->provider = $token->getProviderKey();
             $user->nickname = $token->getAttribute('nickname');
             $this->repository->persist($user);
-            $token->setUser($user);
-            $this->security->setToken($token);
+            $newToken->setUser($user);
+            $this->security->setToken($newToken);
 
             $targetPath = 'front_index';
         } else {
