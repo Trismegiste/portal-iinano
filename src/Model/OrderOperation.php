@@ -15,4 +15,6 @@ interface OrderOperation
 {
 
     public function authenticateWith(UserInterface $user);
+
+    public function makeItPaid(array $info);
 }

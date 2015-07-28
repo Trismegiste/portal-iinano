@@ -27,6 +27,9 @@ class Order implements Persistable, OrderOperation
     /** @var Plan */
     protected $product;
 
+    /** @var array */
+    protected $transactionInfo;
+
     public function __construct(Plan $product)
     {
         $this->product = $product;
@@ -49,6 +52,11 @@ class Order implements Persistable, OrderOperation
     public function getState()
     {
         return $this->currentState;
+    }
+
+    public function makeItPaid(array $info)
+    {
+        $this->currentState->setTransactionInfo($info);
     }
 
 }

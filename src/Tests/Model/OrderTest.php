@@ -41,4 +41,15 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         return $order;
     }
 
+    /**
+     * @depends testAuthenticateTransition
+     */
+    public function testMakePaymentTransition(Order $order)
+    {
+        $order->makeItPaid([]);
+        $this->assertState('Paid', $order);
+
+        return $order;
+    }
+
 }

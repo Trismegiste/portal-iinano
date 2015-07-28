@@ -28,4 +28,9 @@ class AbstractState implements OrderStateInterface
         throw new InvalidTransitionException(__METHOD__);
     }
 
+    public function setTransactionInfo(array $info)
+    {
+        throw new InvalidTransitionException(__METHOD__);
+    }
+
 }
