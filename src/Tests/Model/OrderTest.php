@@ -33,75 +33,8 @@ class OrderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAuthenticateTransition(Order $order)
     {
-        $order->authenticate($this->getMock('Symfony\Component\Security\Core\User\UserInterface'));
+        $order->authenticateWith($this->getMock('Symfony\Component\Security\Core\User\UserInterface'));
         $this->assertState('Authenticated', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testAuthenticateTransition
-     */
-    public function testReadyToPayTransition(Order $order)
-    {
-        $order->readyToPay([]);
-        $this->assertState('CanCapture', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testReadyToPayTransition
-     */
-    public function testDoPaymentTransition(Order $order)
-    {
-        $order->doPayment();
-        $this->assertState('Paid', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testDoPaymentTransition
-     */
-    public function testDeployTransition(Order $order)
-    {
-        $order->deploy();
-        $this->assertState('StackCreation', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testDeployTransition
-     */
-    public function testCommitStackTransition(Order $order)
-    {
-        $order = clone $order;
-        $order->commitStack([]);
-        $this->assertState('Created', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testDeployTransition
-     */
-    public function testRollback(Order $order)
-    {
-        $order->rollbackStack();
-        $this->assertState('Rollback', $order);
-
-        return $order;
-    }
-
-    /**
-     * @depends testRollback
-     */
-    public function testRelauchDeploy(Order $order)
-    {
-        $order->deploy();
-        $this->assertState('Created', $order);
 
         return $order;
     }

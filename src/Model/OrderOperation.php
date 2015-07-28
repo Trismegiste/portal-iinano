@@ -1,12 +1,12 @@
 <?php
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /*
  * portal-iinano
  */
 
 namespace Trismegiste\PortalBundle\Model;
+
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * OrderOperation is a contract for
