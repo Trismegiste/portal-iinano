@@ -7,6 +7,7 @@
 namespace Trismegiste\PortalBundle\Model\State;
 
 use Trismegiste\PortalBundle\Model\Order;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * AbstractState is an abstract state for an order (the context)
@@ -22,7 +23,7 @@ class AbstractState implements OrderStateInterface
         $this->context = $order;
     }
 
-    public function setAuthenticated()
+    public function setAuthenticated(UserInterface $user)
     {
         throw new InvalidTransitionException(__METHOD__);
     }

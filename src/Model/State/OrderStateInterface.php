@@ -1,12 +1,12 @@
 <?php
 
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /*
  * portal-iinano
  */
 
 namespace Trismegiste\PortalBundle\Model\State;
+
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * OrderStateInterface is a contract for a State of a Cart/Order/Invoice
@@ -14,5 +14,5 @@ namespace Trismegiste\PortalBundle\Model\State;
 interface OrderStateInterface
 {
 
-    public function setAuthenticated();
+    public function setAuthenticated(UserInterface $user);
 }

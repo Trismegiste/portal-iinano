@@ -33,8 +33,10 @@ class OrderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAuthenticateTransition(Order $order)
     {
-        $order->authenticateWith($this->getMock('Symfony\Component\Security\Core\User\UserInterface'));
+        $user = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
+        $order->authenticateWith($user);
         $this->assertState('Authenticated', $order);
+        $this->assertNotNull($order->getUser());
 
         return $order;
     }

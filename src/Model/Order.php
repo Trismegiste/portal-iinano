@@ -20,6 +20,8 @@ class Order implements Persistable, OrderOperation
 
     /** @var OrderStateInterface */
     protected $currentState;
+
+    /** @var UserInterface */
     protected $user;
 
     /** @var Plan */
@@ -31,37 +33,22 @@ class Order implements Persistable, OrderOperation
         $this->currentState = new State\Cart($this);
     }
 
-    public function getState()
-    {
-        return $this->currentState;
-    }
-
     /**
-     * Do not call - Only State can call this method
-     */
-    public function setState(OrderStateInterface $newState)
-    {
-        $this->currentState = $newState;
-    }
-
-    /**
-     * Action
-     *
-     * @param UserInterface $user
+     * @inheritdoc
      */
     public function authenticateWith(UserInterface $user)
     {
-        if (is_null($this->user)) {
-            $this->user = $user;
-            $this->currentState->setAuthenticated();
-        } else {
-            throw new RuntimeException('Already authenticated');
-        }
+        $this->currentState->setAuthenticated($user);
     }
 
     public function getUser()
     {
         return $this->user;
+    }
+
+    public function getState()
+    {
+        return $this->currentState;
     }
 
 }

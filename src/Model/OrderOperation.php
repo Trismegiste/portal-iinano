@@ -9,7 +9,7 @@ namespace Trismegiste\PortalBundle\Model;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * OrderOperation is a contract for
+ * OrderOperation is a contract for operations affecting an Order
  */
 interface OrderOperation
 {
