@@ -64,14 +64,27 @@ class OrderTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @depends testStartDeployment
+     * @depends testStartCreation
      */
     public function testDeploymentOk(Order $order)
     {
-        $order->deploymentOk('dummy');
+        $order->deploymentOk([]);
         $this->assertState('Deployed', $order);
 
         return $order;
+    }
+
+    public function testDeployHasFailed()
+    {
+        $order = new Order(new Plan([]));
+        $user = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
+        $order->authenticateWith($user);
+        $order->makeItPaid([]);
+        $order->createStack('dummy');
+        $this->assertState('DeployInProgress', $order);
+
+        $order->deploymentFailed();
+        $this->assertState('Paid', $order);
     }
 
 }

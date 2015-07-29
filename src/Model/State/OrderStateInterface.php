@@ -21,4 +21,6 @@ interface OrderStateInterface
     public function startCreation($stackName);
 
     public function setDeployed(array $stackInfo);
+
+    public function rollbacked();
 }

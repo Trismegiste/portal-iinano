@@ -75,4 +75,9 @@ class Order implements Persistable, OrderOperation
         $this->currentState->setDeployed($info);
     }
 
+    public function deploymentFailed()
+    {
+        $this->currentState->rollbacked();
+    }
+
 }

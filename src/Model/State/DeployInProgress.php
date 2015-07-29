@@ -20,4 +20,11 @@ class DeployInProgress extends AbstractState
         }, $stackInfo);
     }
 
+    public function rollbacked()
+    {
+        $this->executeInContext(function() {
+            $this->currentState = new Paid($this);
+        });
+    }
+
 }

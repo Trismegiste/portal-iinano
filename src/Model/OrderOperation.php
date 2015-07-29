@@ -21,4 +21,6 @@ interface OrderOperation
     public function createStack($stackName);
 
     public function deploymentOk(array $info);
+
+    public function deploymentFailed();
 }

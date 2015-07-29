@@ -54,4 +54,9 @@ class AbstractState implements OrderStateInterface
         throw new InvalidTransitionException(__METHOD__);
     }
 
+    public function rollbacked()
+    {
+        throw new InvalidTransitionException(__METHOD__);
+    }
+
 }
