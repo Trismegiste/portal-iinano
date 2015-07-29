@@ -30,6 +30,12 @@ class Order implements Persistable, OrderOperation
     /** @var array */
     protected $transactionInfo;
 
+    /** @var string */
+    protected $stackName;
+
+    /** @var array */
+    protected $createStackOutput;
+
     public function __construct(Plan $product)
     {
         $this->product = $product;
@@ -56,7 +62,12 @@ class Order implements Persistable, OrderOperation
 
     public function makeItPaid(array $info)
     {
-        $this->currentState->setTransactionInfo($info);
+        $this->currentState->setPaid($info);
+    }
+
+    public function createStack($stackName)
+    {
+        $this->currentState->startCreation($stackName);
     }
 
 }

@@ -12,18 +12,16 @@ namespace Trismegiste\PortalBundle\Model\State;
 class Authenticated extends AbstractState
 {
 
-    public function setTransactionInfo(array $info)
+    public function setPaid(array $info)
     {
-        $bound = \Closure::bind(function($info) {
-                    if (is_null($this->transactionInfo)) {
-                        $this->currentState = new Paid($this);
-                        $this->transactionInfo = $info;
-                    } else {
-                        throw new InvalidTransitionException('Already paid');
-                    }
-                }, $this->context, get_class($this->context));
-
-        call_user_func($bound, $info);
+        $this->executeInContext(function($info) {
+            if (is_null($this->transactionInfo)) {
+                $this->currentState = new Paid($this);
+                $this->transactionInfo = $info;
+            } else {
+                throw new InvalidTransitionException('Already paid');
+            }
+        }, $info);
     }
 
 }

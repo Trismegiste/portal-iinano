@@ -16,5 +16,5 @@ interface OrderStateInterface
 
     public function setAuthenticated(UserInterface $user);
 
-    public function setTransactionInfo(array $info);
+    public function setPaid(array $info);
 }

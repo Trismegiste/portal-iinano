@@ -23,12 +23,23 @@ class AbstractState implements OrderStateInterface
         $this->context = $order;
     }
 
+    protected function executeInContext()
+    {
+        if (func_num_args() < 1) {
+            throw new \InvalidArgumentException('No closure');
+        }
+        $param = func_get_args();
+        $method = array_shift($param);
+        $bound = \Closure::bind($method, $this->context, get_class($this->context));
+        call_user_func_array($bound, $param);
+    }
+
     public function setAuthenticated(UserInterface $user)
     {
         throw new InvalidTransitionException(__METHOD__);
     }
 
-    public function setTransactionInfo(array $info)
+    public function setPaid(array $info)
     {
         throw new InvalidTransitionException(__METHOD__);
     }

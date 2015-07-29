@@ -17,11 +17,10 @@ class Cart extends AbstractState
     public function setAuthenticated(UserInterface $user)
     {
         if (is_null($this->context->getUser())) {
-            $bound = \Closure::bind(function($user) {
-                        $this->currentState = new Authenticated($this);
-                        $this->user = $user;
-                    }, $this->context, get_class($this->context));
-            call_user_func($bound, $user);
+            $this->executeInContext(function($user) {
+                $this->currentState = new Authenticated($this);
+                $this->user = $user;
+            }, $user);
         } else {
             throw new InvalidTransitionException("Already authenticated");
         }
