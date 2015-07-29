@@ -6,13 +6,12 @@
 
 namespace Trismegiste\PortalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * PlanController is a controller for purchasing Plan
  */
-class PlanController extends Controller
+class PlanController extends FrontTemplate
 {
 
     public function listAction()

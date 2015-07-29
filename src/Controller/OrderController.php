@@ -6,17 +6,24 @@
 
 namespace Trismegiste\PortalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 /**
  * OrderController is a controller for step-by-step order processing & fulfillment
  */
-class OrderController extends Controller
+class OrderController extends FrontTemplate
 {
 
     public function nextStepAction()
     {
-        return new \Symfony\Component\HttpFoundation\Response('wesh');
+        switch (get_class($this->getCart()->getState())) {
+            case 'Trismegiste\PortalBundle\Model\State\Cart' :
+                $path = "trismegiste_oauth_connect";
+                break;
+            case 'Trismegiste\PortalBundle\Model\State\Authenticated' :
+                $path = "payment_paynow";
+                break;
+        }
+
+        return $this->redirect($this->generateUrl($path));
     }
 
 }

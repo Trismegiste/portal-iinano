@@ -6,12 +6,10 @@
 
 namespace Trismegiste\PortalBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-
 /**
  * FrontController is a controller for the front (demo, landing page...)
  */
-class FrontController extends Controller
+class FrontController extends FrontTemplate
 {
 
     public function indexAction()

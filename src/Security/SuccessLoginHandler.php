@@ -41,6 +41,7 @@ class SuccessLoginHandler implements AuthenticationSuccessHandlerInterface
     {
         $path = $this->defaultPath;
         if ($request->getSession()->has('order')) {
+            $request->getSession()->get('order')->authenticateWith($token->getUser());
             $path = $this->orderNextStepRoute;
         }
 
