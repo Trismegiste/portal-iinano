@@ -25,6 +25,9 @@ class PlanController extends FrontTemplate
     {
         try {
             $cart = $this->get('portal.plan.repository')->createCart($sku);
+            if ($this->get('security.context')->isGranted('IS_AUTHENTICATED_FULLY')) {
+                $cart->authenticateWith($this->getUser());
+            }
             $this->get('session')->set('order', $cart);
         } catch (\OutOfRangeException $e) {
             throw new NotFoundHttpException($e->getMessage(), $e);
