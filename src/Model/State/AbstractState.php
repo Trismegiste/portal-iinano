@@ -30,7 +30,7 @@ class AbstractState implements OrderStateInterface
         }
         $param = func_get_args();
         $method = array_shift($param);
-        $bound = \Closure::bind($method, $this->context, get_class($this->context));
+        $bound = \Closure::bind($method, $this->context, $this->context);
         call_user_func_array($bound, $param);
     }
 

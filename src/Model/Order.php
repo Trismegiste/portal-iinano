@@ -42,14 +42,6 @@ class Order implements Persistable, OrderOperation
         $this->currentState = new State\Cart($this);
     }
 
-    /**
-     * @inheritdoc
-     */
-    public function authenticateWith(UserInterface $user)
-    {
-        $this->currentState->setAuthenticated($user);
-    }
-
     public function getUser()
     {
         return $this->user;
@@ -60,21 +52,46 @@ class Order implements Persistable, OrderOperation
         return $this->currentState;
     }
 
+    public function getStackName()
+    {
+        return $this->stackName;
+    }
+
+    /**
+     * @inheritdoc
+     */
+    public function authenticateWith(UserInterface $user)
+    {
+        $this->currentState->setAuthenticated($user);
+    }
+
+    /**
+     * @inheritdoc
+     */
     public function makeItPaid(array $info)
     {
         $this->currentState->setPaid($info);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function createStack($stackName)
     {
         $this->currentState->startCreation($stackName);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function deploymentOk(array $info)
     {
         $this->currentState->setDeployed($info);
     }
 
+    /**
+     * @inheritdoc
+     */
     public function deploymentFailed()
     {
         $this->currentState->rollbacked();

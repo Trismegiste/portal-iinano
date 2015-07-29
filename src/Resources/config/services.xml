@@ -7,7 +7,7 @@
     <services>
 
         <service id="security.user.provider" class="Trismegiste\PortalBundle\Security\UserProvider">
-            <argument type="service" id="dokudoki.repository"/>
+            <argument type="service" id="portal.user.repository"/>
         </service>
 
         <service id="portal.config" class="Trismegiste\PortalBundle\DependencyInjection\OauthConfig">
@@ -23,6 +23,10 @@
         </service>
 
         <service id="portal.plan.repository" class="Trismegiste\PortalBundle\Repository\Plan">
+        </service>
+        <service id="portal.user.repository" class="Trismegiste\PortalBundle\Repository\User">
+            <argument type="service" id="dokudoki.repository"/>
+            <argument>user</argument>
         </service>
 
     </services>

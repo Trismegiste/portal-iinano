@@ -52,21 +52,21 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
     {
         $targetPath = $this->failureDefault;
 
+        $token = $exception->getToken();
         $this->logger->debug('Authentication failure handled by ' . __CLASS__, [
             $exception,
             $exception->getPrevious(),
-            $exception->getToken()
+            $token
         ]);
 
         if (($exception instanceof BadCredentialsException) &&
                 ($exception->getPrevious() instanceof UsernameNotFoundException) &&
-                ($exception->getToken() instanceof Token) &&
-                ($exception->getToken()->getRoles()[0]->getRole() == ThirdPartyAuthentication::IDENTIFIED)) {
+                ($token instanceof Token) &&
+                ($token->getRoles()[0]->getRole() == ThirdPartyAuthentication::IDENTIFIED)) {
 
             $this->logger->info('Autoregister');
 
             // create new user and persist
-            $token = $exception->getToken();
             $newToken = new Token($token->getFirewallName(), $token->getProviderKey(), $token->getUserUniqueIdentifier(), ['ROLE_USER']);
             $user = new User();
             $user->uid = $token->getUserUniqueIdentifier();

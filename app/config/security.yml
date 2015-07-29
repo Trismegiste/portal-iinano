@@ -20,6 +20,7 @@ security:
             anonymous: ~
             oauth:
                 failure_handler: failure_login_autoregister
+                default_target_path: /
             logout:
                 path:   trismegiste_oauth_logout
                 target: /

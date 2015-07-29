@@ -12,6 +12,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Trismegiste\DokudokiBundle\Transform\Mediator\Colleague\MapAlias;
 use Trismegiste\OAuthBundle\Security\OauthUserProviderInterface;
+use Trismegiste\PortalBundle\Repository\User as UserRepo;
 use Trismegiste\Yuurei\Persistence\RepositoryInterface;
 
 /**
@@ -21,11 +22,11 @@ class UserProvider implements OauthUserProviderInterface, UserProviderInterface
 {
 
     /**
-     * @var RepositoryInterface
+     * @var UserRepo
      */
     protected $repository;
 
-    public function __construct(RepositoryInterface $repo)
+    public function __construct(UserRepo $repo)
     {
         $this->repository = $repo;
         $this->userClassAlias = 'user';
@@ -33,10 +34,7 @@ class UserProvider implements OauthUserProviderInterface, UserProviderInterface
 
     public function loadUserByUsername($username)
     {
-        $found = $this->repository->findOne([
-            MapAlias::CLASS_KEY => $this->userClassAlias,
-            'nickname' => $username
-        ]);
+        $found = $this->repository->findByNickname($username);
 
         if (is_null($found)) {
             throw new UsernameNotFoundException("We don't know $username");
@@ -61,11 +59,7 @@ class UserProvider implements OauthUserProviderInterface, UserProviderInterface
 
     public function findByOauthId($provider, $uid)
     {
-        $found = $this->repository->findOne([
-            MapAlias::CLASS_KEY => $this->userClassAlias,
-            'uid' => $uid,
-            'provider' => $provider
-        ]);
+        $found = $this->repository->findByOauthId($provider, $uid);
 
         if (is_null($found)) {
             throw new UsernameNotFoundException("We don't know [$provider, $uid]");

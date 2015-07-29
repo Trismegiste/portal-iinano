@@ -59,6 +59,7 @@ class OrderTest extends \PHPUnit_Framework_TestCase
     {
         $order->createStack('dummy');
         $this->assertState('DeployInProgress', $order);
+        $this->assertEquals('dummy', $order->getStackName());
 
         return $order;
     }
