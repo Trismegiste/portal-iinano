@@ -27,6 +27,7 @@
             <argument type="service" id="logger"/>
             <argument type="service" id="portal.user.repository"/>
             <argument type="service" id="security.context"/>
+            <argument type="service" id="success_login_after"/>
             <tag name="monolog.logger" channel="security"/>
         </service>
 

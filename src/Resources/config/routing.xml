@@ -35,7 +35,7 @@
         <requirement key="_method">GET</requirement>
     </route>
 
-    <route id="user_account" pattern="/user/profile">
+    <route id="user_account" pattern="/customer/profile">
         <default key="_controller">TrismegistePortalBundle:User:show</default>
         <requirement key="_method">GET</requirement>
     </route>

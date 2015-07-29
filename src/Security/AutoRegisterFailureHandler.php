@@ -14,10 +14,10 @@ use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationFailureHandlerInterface;
+use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\HttpUtils;
 use Trismegiste\OAuthBundle\Oauth\ThirdPartyAuthentication;
 use Trismegiste\OAuthBundle\Security\Token;
-use Trismegiste\PortalBundle\Model\User;
 use Trismegiste\PortalBundle\Repository\User as UserRepo;
 
 /**
@@ -39,13 +39,17 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
     /** @var SecurityContextInterface */
     protected $security;
 
-    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger, UserRepo $repo, SecurityContextInterface $secu)
+    /** @var AuthenticationSuccessHandlerInterface */
+    protected $successLoginHandler;
+
+    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger, UserRepo $repo, SecurityContextInterface $secu, AuthenticationSuccessHandlerInterface $successHandler)
     {
         $this->security = $secu;
         $this->httpUtils = $httpUtils;
         $this->logger = $logger;
         $this->failureDefault = 'trismegiste_oauth_connect';
         $this->repository = $repo;
+        $this->successLoginHandler = $successHandler;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception)
@@ -73,10 +77,10 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
             $newToken->setUser($user);
             $this->security->setToken($newToken);
 
-            $targetPath = 'front_index';
-        } else {
-            $request->getSession()->set(SecurityContextInterface::AUTHENTICATION_ERROR, $exception);
+            return $this->successLoginHandler->onAuthenticationSuccess($request, $newToken);
         }
+
+        $request->getSession()->set(SecurityContextInterface::AUTHENTICATION_ERROR, $exception);
 
         return $this->httpUtils->createRedirectResponse($request, $targetPath);
     }
