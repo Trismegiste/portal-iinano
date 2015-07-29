@@ -24,4 +24,10 @@
         <requirement key="sku">[a-z]+</requirement>
         <requirement key="_method">GET</requirement>
     </route>
+
+    <route id="order_next_step" pattern="/order/next">
+        <default key="_controller">TrismegistePortalBundle:Order:nextStep</default>
+        <requirement key="_method">GET</requirement>
+    </route>
+
 </routes>

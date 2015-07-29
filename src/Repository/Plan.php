@@ -23,12 +23,12 @@ class Plan
     {
         return [
             new Model\Plan([
-                'name' => 'micro',
+                'name' => 'starter',
                 'code' => 'sm',
                 'dbLimit' => 2,
-                'storageLimit' => 2,
-                'bandwidthLimit' => 20,
-                'price' => 29,
+                'storageLimit' => 10,
+                'bandwidthLimit' => 300,
+                'price' => 49,
                 'recommendedSize' => 100
                     ]),
             new Model\Plan([

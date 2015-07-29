@@ -31,7 +31,7 @@ class PlanController extends Controller
             throw new NotFoundHttpException($e->getMessage(), $e);
         }
 
-        return $this->redirect($this->generateUrl('trismegiste_oauth_connect'));
+        return $this->redirect($this->generateUrl('order_next_step'));
     }
 
 }

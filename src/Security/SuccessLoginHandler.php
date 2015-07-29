@@ -7,9 +7,7 @@
 namespace Trismegiste\PortalBundle\Security;
 
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\HttpKernel\Log\LoggerInterface;
-use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Http\Authentication\AuthenticationSuccessHandlerInterface;
 use Symfony\Component\Security\Http\HttpUtils;
@@ -29,19 +27,21 @@ class SuccessLoginHandler implements AuthenticationSuccessHandlerInterface
     /** @var UserRepo */
     protected $repository;
     protected $defaultPath;
+    protected $orderNextStepRoute;
 
-    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger)
+    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger, $defaultRoute, $orderRoute)
     {
         $this->httpUtils = $httpUtils;
         $this->logger = $logger;
-        $this->defaultPath = 'user_account';
+        $this->defaultPath = $defaultRoute;
+        $this->orderNextStepRoute = $orderRoute;
     }
 
     public function onAuthenticationSuccess(Request $request, TokenInterface $token)
     {
         $path = $this->defaultPath;
         if ($request->getSession()->has('order')) {
-            $path = 'order_pay';
+            $path = $this->orderNextStepRoute;
         }
 
         return $this->httpUtils->createRedirectResponse($request, $path);

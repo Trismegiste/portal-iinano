@@ -14,10 +14,11 @@
             <argument>%oauth_config%</argument>
         </service>
 
-        <service id="success_login_autocheckout" class="Trismegiste\PortalBundle\Security\SuccessLoginHandler">
+        <service id="success_login_after" class="Trismegiste\PortalBundle\Security\SuccessLoginHandler">
             <argument type="service" id="security.http_utils"/>
             <argument type="service" id="logger"/>
-            <argument type="service" id="session"/>
+            <argument type="string">user_account</argument>
+            <argument type="string">order_next_step</argument>
             <tag name="monolog.logger" channel="security"/>
         </service>
 
