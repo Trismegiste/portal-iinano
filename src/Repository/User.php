@@ -7,6 +7,7 @@
 namespace Trismegiste\PortalBundle\Repository;
 
 use Trismegiste\DokudokiBundle\Transform\Mediator\Colleague\MapAlias;
+use Trismegiste\PortalBundle\Model\User as MyUser;
 use Trismegiste\Yuurei\Persistence\RepositoryInterface;
 
 /**
@@ -46,6 +47,16 @@ class User
     public function findByPk($pk)
     {
         return $this->repository->findByPk($pk);
+    }
+
+    public function persist(MyUser $user)
+    {
+        $this->repository->persist($user);
+    }
+
+    public function create($uid, $provider, $nick)
+    {
+        return new MyUser($uid, $provider, $nick);
     }
 
 }

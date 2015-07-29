@@ -18,7 +18,7 @@ use Symfony\Component\Security\Http\HttpUtils;
 use Trismegiste\OAuthBundle\Oauth\ThirdPartyAuthentication;
 use Trismegiste\OAuthBundle\Security\Token;
 use Trismegiste\PortalBundle\Model\User;
-use Trismegiste\Yuurei\Persistence\RepositoryInterface;
+use Trismegiste\PortalBundle\Repository\User as UserRepo;
 
 /**
  * AutoRegisterFailureHandler is a handler for login failure when the the user is
@@ -33,13 +33,13 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
     /** @var LoggerInterface */
     protected $logger;
 
-    /** @var RepositoryInterface */
+    /** @var UserRepo */
     protected $repository;
 
     /** @var SecurityContextInterface */
     protected $security;
 
-    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger, RepositoryInterface $repo, SecurityContextInterface $secu)
+    public function __construct(HttpUtils $httpUtils, LoggerInterface $logger, UserRepo $repo, SecurityContextInterface $secu)
     {
         $this->security = $secu;
         $this->httpUtils = $httpUtils;
@@ -66,12 +66,9 @@ class AutoRegisterFailureHandler implements AuthenticationFailureHandlerInterfac
 
             $this->logger->info('Autoregister');
 
-            // create new user and persist
-            $newToken = new Token($token->getFirewallName(), $token->getProviderKey(), $token->getUserUniqueIdentifier(), ['ROLE_USER']);
-            $user = new User();
-            $user->uid = $token->getUserUniqueIdentifier();
-            $user->provider = $token->getProviderKey();
-            $user->nickname = $token->getAttribute('nickname');
+            // create new user, persist and authenticate
+            $user = $this->repository->create($token->getUserUniqueIdentifier(), $token->getProviderKey(), $token->getAttribute('nickname'));
+            $newToken = new Token($token->getFirewallName(), $token->getProviderKey(), $token->getUserUniqueIdentifier(), $user->getRoles());
             $this->repository->persist($user);
             $newToken->setUser($user);
             $this->security->setToken($newToken);

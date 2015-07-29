@@ -17,9 +17,16 @@ class User implements UserInterface, Persistable
 
     use \Trismegiste\Yuurei\Persistence\PersistableImpl;
 
-    public $nickname;
-    public $provider;
-    public $uid;
+    protected $nickname;
+    protected $provider;
+    protected $uid;
+
+    public function __construct($uid, $provider, $nick)
+    {
+        $this->nickname = $nick;
+        $this->provider = $provider;
+        $this->uid = $uid;
+    }
 
     public function eraseCredentials()
     {
