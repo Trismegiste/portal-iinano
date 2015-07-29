@@ -19,4 +19,6 @@ interface OrderOperation
     public function makeItPaid(array $info);
 
     public function createStack($stackName);
+
+    public function deploymentOk(array $info);
 }

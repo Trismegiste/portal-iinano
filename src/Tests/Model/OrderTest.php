@@ -52,4 +52,26 @@ class OrderTest extends \PHPUnit_Framework_TestCase
         return $order;
     }
 
+    /**
+     * @depends testMakePaymentTransition
+     */
+    public function testStartCreation(Order $order)
+    {
+        $order->createStack('dummy');
+        $this->assertState('DeployInProgress', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testStartDeployment
+     */
+    public function testDeploymentOk(Order $order)
+    {
+        $order->deploymentOk('dummy');
+        $this->assertState('Deployed', $order);
+
+        return $order;
+    }
+
 }

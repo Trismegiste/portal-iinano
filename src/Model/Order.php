@@ -34,7 +34,7 @@ class Order implements Persistable, OrderOperation
     protected $stackName;
 
     /** @var array */
-    protected $createStackOutput;
+    protected $stackOutput;
 
     public function __construct(Plan $product)
     {
@@ -68,6 +68,11 @@ class Order implements Persistable, OrderOperation
     public function createStack($stackName)
     {
         $this->currentState->startCreation($stackName);
+    }
+
+    public function deploymentOk(array $info)
+    {
+        $this->currentState->setDeployed($info);
     }
 
 }

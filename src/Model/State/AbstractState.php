@@ -44,4 +44,14 @@ class AbstractState implements OrderStateInterface
         throw new InvalidTransitionException(__METHOD__);
     }
 
+    public function startCreation($stackName)
+    {
+        throw new InvalidTransitionException(__METHOD__);
+    }
+
+    public function setDeployed(array $stackInfo)
+    {
+        throw new InvalidTransitionException(__METHOD__);
+    }
+
 }
