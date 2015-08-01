@@ -14,6 +14,10 @@ use Symfony\Component\Security\Core\User\UserInterface;
 interface OrderOperation
 {
 
+    public function attachProduct(Plan $product);
+
+    public function requestEstimate(Inquiry $estimate);
+
     public function authenticateWith(UserInterface $user);
 
     public function makeItPaid(array $info);

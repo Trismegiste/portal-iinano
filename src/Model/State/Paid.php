@@ -16,7 +16,7 @@ class Paid extends AbstractState
     {
         $this->executeInContext(function($str) {
             $this->stackName = $str;
-            $this->currentState = new DeployInProgress($this);
+            $this->setState(new DeployInProgress($this));
         }, $stackName);
     }
 

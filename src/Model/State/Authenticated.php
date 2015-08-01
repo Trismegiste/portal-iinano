@@ -16,7 +16,7 @@ class Authenticated extends AbstractState
     {
         $this->executeInContext(function($info) {
             if (is_null($this->transactionInfo)) {
-                $this->currentState = new Paid($this);
+                $this->setState(new Paid($this));
                 $this->transactionInfo = $info;
             } else {
                 throw new InvalidTransitionException('Already paid');

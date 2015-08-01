@@ -27,6 +27,9 @@ class Order implements Persistable, OrderOperation
     /** @var Plan */
     protected $product;
 
+    /** @var Estimate */
+    protected $estimate;
+
     /** @var array */
     protected $transactionInfo;
 
@@ -36,10 +39,19 @@ class Order implements Persistable, OrderOperation
     /** @var array */
     protected $stackOutput;
 
-    public function __construct(Plan $product)
+    public function __construct()
     {
-        $this->product = $product;
-        $this->currentState = new State\Cart($this);
+        $this->currentState = new State\Nihil($this);
+    }
+
+    protected function setState(OrderStateInterface $newState)
+    {
+        $this->currentState = $newState;
+    }
+
+    public function attachProduct(Plan $product)
+    {
+        $this->currentState->setProduct($product);
     }
 
     public function getUser()
@@ -95,6 +107,11 @@ class Order implements Persistable, OrderOperation
     public function deploymentFailed()
     {
         $this->currentState->rollbacked();
+    }
+
+    public function requestEstimate(Inquiry $estimate)
+    {
+        $this->currentState->setEstimate($estimate);
     }
 
 }

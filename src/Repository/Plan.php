@@ -28,26 +28,17 @@ class Plan
                 'dbLimit' => 2,
                 'storageLimit' => 10,
                 'bandwidthLimit' => 300,
-                'price' => 49,
+                'price' => 79,
                 'recommendedSize' => 100
                     ]),
             new Model\Plan([
                 'name' => 'value',
-                'code' => 'md',
+                'code' => 'value',
                 'dbLimit' => 10,
-                'storageLimit' => 20,
-                'bandwidthLimit' => 200,
-                'price' => 99,
-                'recommendedSize' => 1000
-                    ]),
-            new Model\Plan([
-                'name' => 'large',
-                'code' => 'lg',
-                'dbLimit' => 50,
-                'storageLimit' => 100,
+                'storageLimit' => 30,
                 'bandwidthLimit' => 1000,
-                'price' => 299,
-                'recommendedSize' => 10000
+                'price' => 149,
+                'recommendedSize' => 1000
                     ])
         ];
     }
@@ -77,7 +68,8 @@ class Plan
     {
         $plan = $this->findBySku($sku);
 
-        $order = new Model\Order($plan);
+        $order = new Model\Order();
+        $order->attachProduct($plan);
 
         return $order;
     }

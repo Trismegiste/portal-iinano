@@ -12,20 +12,23 @@ namespace Trismegiste\PortalBundle\Model;
 class Plan
 {
 
-    protected $name,
-            $code,
-            $dbLimit,
-            $storageLimit,
-            $bandwidthLimit,
-            $descr,
-            $price,
-            $recommendedSize;
+    protected $name;
+    protected $code;
+    protected $dbLimit;
+    protected $storageLimit;
+    protected $bandwidthLimit;
+    protected $descr;
+    protected $price;
+    protected $recommendedSize;
+    protected $templateBody;
 
     public function __construct(array $property)
     {
         foreach ($property as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->$key = $value;
+            } else {
+                throw new \InvalidArgumentException("$key is not a property of Plan");
             }
         }
     }
@@ -68,6 +71,11 @@ class Plan
     public function getRecommendedSize()
     {
         return $this->recommendedSize;
+    }
+
+    public function getTemplate()
+    {
+        return $this->templateBody;
     }
 
 }

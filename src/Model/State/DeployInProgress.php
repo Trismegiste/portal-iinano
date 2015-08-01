@@ -16,14 +16,14 @@ class DeployInProgress extends AbstractState
     {
         $this->executeInContext(function($info) {
             $this->stackOutput = $info;
-            $this->currentState = new Deployed($this);
+            $this->setState(new Deployed($this));
         }, $stackInfo);
     }
 
     public function rollbacked()
     {
         $this->executeInContext(function() {
-            $this->currentState = new Paid($this);
+            $this->setState(new Paid($this));
         });
     }
 

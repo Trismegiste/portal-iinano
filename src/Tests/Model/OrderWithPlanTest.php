@@ -10,9 +10,9 @@ use Trismegiste\PortalBundle\Model\Order;
 use Trismegiste\PortalBundle\Model\Plan;
 
 /**
- * OrderTest tests Order entity
+ * OrderWithPlanTest tests Order entity when a user choose a Plan
  */
-class OrderTest extends \PHPUnit_Framework_TestCase
+class OrderWithPlanTest extends \PHPUnit_Framework_TestCase
 {
 
     public function assertState($state, Order $order)
@@ -22,14 +22,25 @@ class OrderTest extends \PHPUnit_Framework_TestCase
 
     public function testInitialState()
     {
-        $order = new Order(new Plan([]));
-        $this->assertState('Cart', $order);
+        $order = new Order();
+        $this->assertState('Nihil', $order);
 
         return $order;
     }
 
     /**
      * @depends testInitialState
+     */
+    public function testAttachProduct(Order $order)
+    {
+        $order->attachProduct(new Plan([]));
+        $this->assertState('Cart', $order);
+
+        return $order;
+    }
+
+    /**
+     * @depends testAttachProduct
      */
     public function testAuthenticateTransition(Order $order)
     {
@@ -77,7 +88,8 @@ class OrderTest extends \PHPUnit_Framework_TestCase
 
     public function testDeployHasFailed()
     {
-        $order = new Order(new Plan([]));
+        $order = new Order();
+        $order->attachProduct(new Plan([]));
         $user = $this->getMock('Symfony\Component\Security\Core\User\UserInterface');
         $order->authenticateWith($user);
         $order->makeItPaid([]);

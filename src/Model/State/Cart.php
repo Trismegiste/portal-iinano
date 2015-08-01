@@ -18,7 +18,7 @@ class Cart extends AbstractState
     {
         if (is_null($this->context->getUser())) {
             $this->executeInContext(function($user) {
-                $this->currentState = new Authenticated($this);
+                $this->setState(new Authenticated($this));
                 $this->user = $user;
             }, $user);
         } else {
