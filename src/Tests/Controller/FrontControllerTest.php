@@ -22,8 +22,8 @@ class FrontControllerTest extends ControllerTestCase
     public function testConnect()
     {
         $crawler = $this->client->request('GET', $this->generateUrl('trismegiste_oauth_connect'));
-        file_put_contents('wesh.html', $this->client->getResponse());
         $this->assertCount(1, $crawler->filter('i[class="icon-facebook-sign"]'));
+        $this->assertCount(1, $crawler->filter('i[class="icon-twitter-sign"]'));
     }
 
 }
