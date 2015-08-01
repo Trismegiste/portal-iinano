@@ -4,7 +4,6 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://symfony.com/schema/routing http://symfony.com/schema/routing/routing-1.0.xsd">
 
-    <!-- step 1 : choose provider -->
     <route id="trismegiste_oauth_connect" pattern="/connect">
         <default key="_controller">TrismegistePortalBundle:Front:connect</default>
         <requirement key="_method">GET</requirement>
@@ -29,16 +28,20 @@
         <default key="_controller">TrismegistePortalBundle:Order:nextStep</default>
         <requirement key="_method">GET</requirement>
     </route>
+    <route id="order_deploy" pattern="/order/deploy/{id}">
+        <default key="_controller">TrismegistePortalBundle:Order:deploy</default>
+        <requirement key="id">[\da-f]{24}</requirement>
+        <requirement key="_method">GET</requirement>
+    </route>
 
     <route id="payment_paynow" pattern="/payment/paynow">
         <default key="_controller">TrismegistePortalBundle:Payment:payNow</default>
         <requirement key="_method">GET</requirement>
     </route>
 
-    <route id="user_account" pattern="/customer/profile">
-        <default key="_controller">TrismegistePortalBundle:User:show</default>
+    <route id="customer_account" pattern="/customer/profile">
+        <default key="_controller">TrismegistePortalBundle:Customer:show</default>
         <requirement key="_method">GET</requirement>
     </route>
-
 
 </routes>

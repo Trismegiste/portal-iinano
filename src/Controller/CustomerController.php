@@ -9,9 +9,9 @@ namespace Trismegiste\PortalBundle\Controller;
 use Mother;
 
 /**
- * UserController controls actions on Use entity
+ * CustomerController controls actions on Use entity
  */
-class UserController extends FrontTemplate
+class CustomerController extends FrontTemplate
 {
 
     public function showAction()

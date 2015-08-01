@@ -46,7 +46,9 @@ label {
     text-align: center;
 }
 
-
+section.widget {
+    padding: 0em 1em 0em;
+}
 
 /*
  * -- PURE FORM STYLES --

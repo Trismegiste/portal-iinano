@@ -14,7 +14,15 @@ class PaymentController extends FrontTemplate
 
     public function payNowAction()
     {
-        return new \Symfony\Component\HttpFoundation\Response('pay');
+        return $this->render('TrismegistePortalBundle:Payment:paynow.html.twig');
+    }
+
+    public function returnFromPaymentAction()
+    {
+        $info = [];
+        $this->getCart()->makeItPaid($info);
+
+        $this->redirect($this->generateUrl('order_next_step'));
     }
 
 }

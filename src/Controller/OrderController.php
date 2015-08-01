@@ -14,16 +14,26 @@ class OrderController extends FrontTemplate
 
     public function nextStepAction()
     {
+        define('PREFIX', 'Trismegiste\PortalBundle\Model\State\\');
+
         switch (get_class($this->getCart()->getState())) {
-            case 'Trismegiste\PortalBundle\Model\State\Cart' :
-                $path = "trismegiste_oauth_connect";
+            case PREFIX . 'Cart' :
+                $url = $this->generateUrl("trismegiste_oauth_connect");
                 break;
-            case 'Trismegiste\PortalBundle\Model\State\Authenticated' :
-                $path = "payment_paynow";
+            case PREFIX . 'Authenticated' :
+                $url = $this->generateUrl("payment_paynow");
+                break;
+            case PREFIX . 'Paid' :
+                $url = $this->generateUrl("front_plan_deploy", ['id' => $this->getCart()->getId()]);
                 break;
         }
 
-        return $this->redirect($this->generateUrl($path));
+        return $this->redirect($url);
+    }
+
+    public function deployAction($id)
+    {
+        return new \Symfony\Component\HttpFoundation\Response('deploy');
     }
 
 }
