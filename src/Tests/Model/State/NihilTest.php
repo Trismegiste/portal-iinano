@@ -12,7 +12,7 @@ use Trismegiste\PortalBundle\Model\Plan;
 use Trismegiste\PortalBundle\Model\State\Nihil;
 
 /**
- * NihilTest is a ...
+ * NihilTest tests the Nihil state
  */
 class NihilTest extends StateTestCase
 {

@@ -9,7 +9,7 @@ namespace Trismegiste\PortalBundle\Model\State;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Cart is a state for an Order in the Cart state
+ * Cart is a state for an Order in the Cart state i.e with a defined product (Plan)
  */
 class Cart extends AbstractState
 {

@@ -28,7 +28,7 @@ class OrderController extends FrontTemplate
                 break;
         }
 
-        return $this->redirect($url);
+        return $this->redirect($url);  // @todo use a forward ?
     }
 
     public function deployAction($id)

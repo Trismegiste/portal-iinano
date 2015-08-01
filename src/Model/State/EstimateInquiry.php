@@ -9,7 +9,7 @@ namespace Trismegiste\PortalBundle\Model\State;
 use Trismegiste\PortalBundle\Model\Plan;
 
 /**
- * EstimateInquiry is a state wiating for a custom plan
+ * EstimateInquiry is a state waiting for a custom plan
  */
 class EstimateInquiry extends AbstractState
 {

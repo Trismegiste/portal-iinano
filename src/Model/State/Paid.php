@@ -7,7 +7,7 @@
 namespace Trismegiste\PortalBundle\Model\State;
 
 /**
- * Paid is a ...
+ * Paid is a stat when the Order has been paid
  */
 class Paid extends AbstractState
 {
