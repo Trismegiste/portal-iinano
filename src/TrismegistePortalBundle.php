@@ -6,17 +6,22 @@
 
 namespace Trismegiste\PortalBundle;
 
-use Mother;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Trismegiste\PortalBundle\DependencyInjection\Extension;
 
 /**
- * TrismegistePortalBundle is a ...
+ * TrismegistePortalBundle is the bundle for iinano portal
  */
-class TrismegistePortalBundle extends \Symfony\Component\HttpKernel\Bundle\Bundle
+class TrismegistePortalBundle extends Bundle
 {
 
     public function getContainerExtension()
     {
-        return new DependencyInjection\Extension();
+        if (is_null($this->extension)) {
+            $this->extension = new Extension();
+        }
+
+        return $this->extension;
     }
 
 }
