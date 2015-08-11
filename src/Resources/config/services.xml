@@ -17,8 +17,8 @@
         <service id="success_login_after" class="Trismegiste\PortalBundle\Security\SuccessLoginHandler">
             <argument type="service" id="security.http_utils"/>
             <argument type="service" id="logger"/>
-            <argument type="string">user_account</argument>
-            <argument type="string">order_next_step</argument>
+            <argument type="string">front_customer_account</argument>
+            <argument type="string">front_order_next_step</argument>
             <tag name="monolog.logger" channel="security"/>
         </service>
 

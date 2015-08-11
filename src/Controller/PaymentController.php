@@ -22,7 +22,7 @@ class PaymentController extends FrontTemplate
         $info = [];
         $this->getCart()->makeItPaid($info);
 
-        $this->redirect($this->generateUrl('order_next_step'));
+        $this->redirect($this->generateUrl('front_order_next_step'));
     }
 
 }

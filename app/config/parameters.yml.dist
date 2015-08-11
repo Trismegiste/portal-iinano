@@ -9,8 +9,8 @@ parameters:
         sandbox: 0
     oauth_config:
         facebook:
-            client: aaa
-            secret: bbb
+            client_id: aaa
+            secret_id: bbb
         twitter:
-            client: aaa
-            secret: bbb
+            client_id: aaa
+            secret_id: bbb
