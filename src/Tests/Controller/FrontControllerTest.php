@@ -26,4 +26,11 @@ class FrontControllerTest extends ControllerTestCase
         $this->assertCount(1, $crawler->filter('i[class="icon-twitter-sign"]'));
     }
 
+    public function testListPlan()
+    {
+        $cnt = count($this->getService('portal.plan.repository')->all());
+        $crawler = $this->client->request('GET', $this->generateUrl('front_plan_list'));
+        $this->assertCount($cnt, $crawler->selectButton('Choose'));
+    }
+
 }

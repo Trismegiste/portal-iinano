@@ -29,7 +29,7 @@
                             <li>Free marketing tools and coupon</li>
                             <li>Monetize your site with Paypal</li>
                         </ul>
-                        <form action="{{ path('front_order_checkout', {sku:item.code}) }}" method="GET">
+                        <form action="{{ path('front_order_checkout', {sku:item.code}) }}" method="POST">
                             <button class="button-choose pure-button">Choose</button>
                         </form>
                     </div>

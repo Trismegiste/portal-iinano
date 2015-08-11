@@ -20,7 +20,7 @@
     <route id="front_order_checkout" pattern="/order/checkout/{sku}">
         <default key="_controller">TrismegistePortalBundle:Order:checkout</default>
         <requirement key="sku">[a-z]+</requirement>
-        <requirement key="_method">GET</requirement>
+        <requirement key="_method">POST</requirement>
     </route>
     <route id="front_order_next_step" pattern="/order/next">
         <default key="_controller">TrismegistePortalBundle:Order:nextStep</default>
